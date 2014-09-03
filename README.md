@@ -20,9 +20,14 @@ The library is not distributed anywhere yet, so you will need to `mvn install` i
 
 2. How to use
 -------------
+```
+import com.mcac0006.siftscience.SiftScienceHelper;
+import com.mcac0006.siftscience.result.domain.SiftScienceResponse;
+import com.mcac0006.siftscience.event.domain.*;
+```
 
 ```
-final SiftScience helper = new SiftScience('API_KEY_GOES_HERE'); // instantiate the helper
+final SiftScienceHelper helper = new SiftScience('API_KEY_GOES_HERE'); // instantiate the helper
 ```
 
 ```
