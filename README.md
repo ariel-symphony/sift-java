@@ -27,7 +27,7 @@ import com.mcac0006.siftscience.event.domain.*;
 ```
 
 ```
-final SiftScienceHelper helper = new SiftScience('API_KEY_GOES_HERE'); // instantiate the helper
+final SiftScienceHelper helper = new SiftScienceHelper('API_KEY_GOES_HERE'); // instantiate the helper
 ```
 
 ```
@@ -40,7 +40,7 @@ event.addCustomField('key1', 'value1');
 event.addCustomField('key2', 'value2');
 ...
 
-final SiftScienceResult ssr = helper.send(event); //send the event to SiftScience
+final SiftScienceResponse ssr = helper.send(event); //send the event to SiftScience
 
 ```
 
@@ -49,7 +49,7 @@ final SiftScienceResult ssr = helper.send(event); //send the event to SiftScienc
 final Label label = new Label(); // create an event
 label.setX(...).setY(...).setZ(...); //fill in all fields using setters
 
-final SiftScienceResult ssr = helper.send(event); //send the event to SiftScience
+final SiftScienceResponse ssr = helper.send(event); //send the event to SiftScience
 ```
 
 ```
