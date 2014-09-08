@@ -12,7 +12,8 @@
       {
           "$payment_type"    : "$credit_card",
           "$card_bin"        : "542486",
-          "$card_last4"      : "4444"
+          "$card_last4"      : "4444",
+          "$disassociated"   : false
       }
   ],
   "$billing_address"  : {

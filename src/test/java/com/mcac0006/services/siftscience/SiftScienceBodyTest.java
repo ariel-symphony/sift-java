@@ -66,6 +66,7 @@ public class SiftScienceBodyTest {
 		billingAddress.setName("Bill Jones").setPhone("1-415-555-6041").setAddressLine1("2100 Main Street").setAddressLine2("Apt 3B").setCity("New London").setRegion("New Hampshire").setCountry("US").setZipCode("03257");
 		
 		final PaymentMethod paymentMethod = new PaymentMethod();
+		paymentMethod.setDisassociated(false);
 		paymentMethod.setPaymentType(PaymentType.CREDIT_CARD).setPaymentGateway(PaymentGateway.BRAINTREE).setCardBIN("542486").setCardLast4("4444");
 		
 		final Address shippingAddress = new Address();
@@ -107,6 +108,7 @@ public class SiftScienceBodyTest {
 		billingAddress.setName("Bill Jones").setPhone("1-415-555-6041").setAddressLine1("2100 Main Street").setAddressLine2("Apt 3B").setCity("New London").setRegion("New Hampshire").setCountry("US").setZipCode("03257");
 		
 		final PaymentMethod paymentMethod = new PaymentMethod();
+		paymentMethod.setDisassociated(false);
 		paymentMethod.setPaymentType(PaymentType.CREDIT_CARD).setPaymentGateway(PaymentGateway.BRAINTREE).setCardBIN("542486").setCardLast4("4444");
 		
 		final Address shippingAddress = new Address();
@@ -148,6 +150,7 @@ public class SiftScienceBodyTest {
 		billingAddress.setName("Bill Jones").setPhone("1-415-555-6041").setAddressLine1("2100 Main Street").setAddressLine2("Apt 3B").setCity("New London").setRegion("New Hampshire").setCountry("US").setZipCode("03257");
 		
 		final PaymentMethod paymentMethod = new PaymentMethod();
+		paymentMethod.setDisassociated(false);
 		paymentMethod.setPaymentType(PaymentType.CREDIT_CARD).setPaymentGateway(PaymentGateway.BRAINTREE).setCardBIN("542486").setCardLast4("4444");
 		
 		final Address shippingAddress = new Address();
@@ -224,6 +227,7 @@ public class SiftScienceBodyTest {
 		
 		// 1. Instantiate an {@link CreateAccount} instance with the same values found in $create_account.json.
 		final PaymentMethod pm = new PaymentMethod();
+		pm.setDisassociated(false);
 		pm.setPaymentType(PaymentType.CREDIT_CARD).setCardBIN("542486").setCardLast4("4444");
 		
 		final Address billingAddress = new Address();
@@ -264,6 +268,7 @@ public class SiftScienceBodyTest {
 		billingAddress.setName("Bill Jones").setPhone("1-415-555-6041").setAddressLine1("2100 Main Street").setAddressLine2("Apt 3B").setCity("New London").setRegion("New Hampshire").setCountry("US").setZipCode("03257");
 		
 		final PaymentMethod pm = new PaymentMethod();
+		pm.setDisassociated(false);
 		pm.setPaymentType(PaymentType.CREDIT_CARD).setCardBIN("542486").setCardLast4("4444").setPaymentGateway(PaymentGateway.BRAINTREE);
 		
 		final Address shippingAddress = new Address();
@@ -510,6 +515,7 @@ public class SiftScienceBodyTest {
 		
 		// 1. Instantiate an {@link SubmitReview} instance with the same values found in $update_account.json.
 		final PaymentMethod paymentMethod = new PaymentMethod();
+		paymentMethod.setDisassociated(false);
 		paymentMethod.setPaymentType(PaymentType.CREDIT_CARD).setCardBIN("542486").setCardLast4("4444");
 
 		final Address billingAddress = new Address();

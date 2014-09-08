@@ -26,7 +26,8 @@
       "$payment_type"    : "$credit_card",
       "$payment_gateway" : "$braintree",
       "$card_bin"        : "542486",
-      "$card_last4"      : "4444"
+      "$card_last4"      : "4444",
+      "$disassociated"   : false
   },
 
   "$shipping_address" : {

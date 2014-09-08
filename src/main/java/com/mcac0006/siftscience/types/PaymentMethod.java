@@ -18,6 +18,9 @@ import com.mcac0006.siftscience.event.domain.Transaction;
  */
 public class PaymentMethod {
 
+	@JsonProperty("$disassociated")
+	private Boolean disassociated;
+
 	@JsonProperty("$payment_type")
 	private PaymentType paymentType;
 	
@@ -62,6 +65,10 @@ public class PaymentMethod {
 	 */
 	@JsonProperty("$routing_number")
 	private String routingNumber;	
+
+	public Boolean getDisassociated() {
+		return disassociated;
+	}
 	
 	public PaymentType getPaymentType() {
 		return paymentType;
@@ -93,6 +100,12 @@ public class PaymentMethod {
 
 	public String getRoutingNumber() {
 		return routingNumber;
+	}
+
+	public PaymentMethod setDisassociated(Boolean isDisassociated)
+	{
+		this.disassociated = isDisassociated;
+		return this;
 	}
 
 	public PaymentMethod setPaymentType(PaymentType paymentType) {
@@ -143,6 +156,10 @@ public class PaymentMethod {
 		}
 		
 		final PaymentMethod pm = (PaymentMethod)obj;
+
+		if (!this.disassociated.equals(pm.getDisassociated())) {
+			return false;
+		}
 		
 		if (this.AVSResultCode == null) {
 			if (pm.getAVSResultCode() != null) {
