@@ -27,7 +27,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.mcac0006.siftscience.SiftScienceHelper;
-import com.mcac0006.siftscience.score.domain.Label;
+import com.mcac0006.siftscience.score.domain.RetrievedLabel;
 import com.mcac0006.siftscience.score.domain.Reason;
 import com.mcac0006.siftscience.score.domain.SiftScienceScore;
 
@@ -119,13 +119,13 @@ public class SiftScienceScoreTest {
 		scoreToAssertAgainst.setScore(0.9340580293938543f);
 		scoreToAssertAgainst.setUserId("FGJJKOIEDDLCAGLNCHLKICOGCCCMCILDJCFCEOIF");
 		
-		Label label = new Label();
-		label.setIsBad(true);
+		RetrievedLabel retrievedLabel = new RetrievedLabel();
+		retrievedLabel.setIsBad(true);
 		com.mcac0006.siftscience.types.Reason[] reasons = new com.mcac0006.siftscience.types.Reason[1];
 		reasons[0] = com.mcac0006.siftscience.types.Reason.CHARGEBACK;
-		label.setTime(new Date(((long)1405494666*1000)));
-		label.setReasons(reasons);
-		scoreToAssertAgainst.setLatestLabel(label);
+		retrievedLabel.setTime(new Date(((long)1405494666*1000)));
+		retrievedLabel.setReasons(reasons);
+		scoreToAssertAgainst.setLatestLabel(retrievedLabel);
 		
 		final Reason reason1 = new Reason();
 		reason1.setName("Latest billing address country");

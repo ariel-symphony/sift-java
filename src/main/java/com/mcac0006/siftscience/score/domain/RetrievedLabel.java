@@ -23,7 +23,7 @@ import com.mcac0006.siftscience.types.serializer.DateSerializer;
  * @author <a href="mailto:matthew.cachia@gmail.com">Matthew Cachia</a>
  *
  */
-public class Label {
+public class RetrievedLabel {
 	
 	/**
 	 * Indicate whether this user is fraudulent, or otherwise engaging in activities that are negative for your business. 
@@ -46,6 +46,12 @@ public class Label {
 	 */
 	@JsonProperty("description")
 	private String description;
+
+	/**
+	 * Optional string indicating the analyst who created the label event.
+	 */
+	@JsonProperty("analyst")
+	private String analyst;
 	
 	/**
 	 * Include this field in your API requests when sending historical events. 
@@ -72,18 +78,25 @@ public class Label {
 		return description;
 	}
 
-	public Label setIsBad(Boolean isBad) {
+	public String getAnalyst() { return analyst; }
+
+	public RetrievedLabel setIsBad(Boolean isBad) {
 		this.isBad = isBad;
 		return this;
 	}
 
-	public Label setReasons(Reason[] reasons) {
+	public RetrievedLabel setReasons(Reason[] reasons) {
 		this.reasons = reasons;
 		return this;
 	}
 
-	public Label setDescription(String description) {
+	public RetrievedLabel setDescription(String description) {
 		this.description = description;
+		return this;
+	}
+
+	public RetrievedLabel setAnalyst(String analyst) {
+		this.analyst = analyst;
 		return this;
 	}
 	
@@ -98,11 +111,11 @@ public class Label {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Label)) {
+		if (obj == null || !(obj instanceof RetrievedLabel)) {
 			return false;
 		}
 		
-		final Label l = (Label)obj;
+		final RetrievedLabel l = (RetrievedLabel)obj;
 		
 		if (this.isBad == null) {
 			if (l.getIsBad() != null) {
@@ -125,6 +138,14 @@ public class Label {
 				return false;
 			}
 		} else if (!Arrays.equals(this.reasons, l.getReasons())) {
+			return false;
+		}
+		
+		if (this.analyst == null) {
+			if (l.getAnalyst() != null) {
+				return false;
+			}
+		} else if (!this.analyst.equals(l.getAnalyst())) {
 			return false;
 		}
 		

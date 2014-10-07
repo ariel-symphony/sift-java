@@ -10,7 +10,6 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.mcac0006.siftscience.event.domain.Transaction;
 import com.mcac0006.siftscience.types.Reason;
 import com.mcac0006.siftscience.types.deserializer.DateDeserializer;
 import com.mcac0006.siftscience.types.serializer.DateSerializer;
@@ -24,7 +23,7 @@ import com.mcac0006.siftscience.types.serializer.DateSerializer;
  * @author <a href="mailto:matthew.cachia@gmail.com">Matthew Cachia</a>
  *
  */
-public class Label {
+public class CreatedLabel {
 	
 	/**
 	 * Your Sift Science API key
@@ -53,6 +52,12 @@ public class Label {
 	 */
 	@JsonProperty("$description")
 	private String description;
+
+	/**
+	 * Optional string indicating the analyst who created the label event.
+	 */
+	@JsonProperty("$analyst")
+	private String analyst;
 	
 	/**
 	 * Include this field in your API requests when sending historical events. 
@@ -87,18 +92,27 @@ public class Label {
 		return description;
 	}
 
-	public Label setIsBad(Boolean isBad) {
+	public String getAnalyst() {
+		return analyst;
+	}
+
+	public CreatedLabel setIsBad(Boolean isBad) {
 		this.isBad = isBad;
 		return this;
 	}
 
-	public Label setReasons(Reason[] reasons) {
+	public CreatedLabel setReasons(Reason[] reasons) {
 		this.reasons = reasons;
 		return this;
 	}
 
-	public Label setDescription(String description) {
+	public CreatedLabel setDescription(String description) {
 		this.description = description;
+		return this;
+	}
+
+	public CreatedLabel setAnalyst(String analyst) {
+		this.analyst = analyst;
 		return this;
 	}
 	
@@ -113,11 +127,11 @@ public class Label {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Label)) {
+		if (obj == null || !(obj instanceof CreatedLabel)) {
 			return false;
 		}
 		
-		final Label l = (Label)obj;
+		final CreatedLabel l = (CreatedLabel)obj;
 		
 		if (this.isBad == null) {
 			if (l.getIsBad() != null) {
@@ -148,6 +162,14 @@ public class Label {
 				return false;
 			}
 		} else if (!Arrays.equals(this.reasons, l.getReasons())) {
+			return false;
+		}
+
+		if (this.analyst == null) {
+			if (l.getAnalyst() != null) {
+				return false;
+			}
+		} else if (!this.analyst.equals(l.getAnalyst())) {
 			return false;
 		}
 		

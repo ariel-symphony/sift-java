@@ -19,7 +19,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.annotate.JsonSerialize.Inclusion;
 
 import com.mcac0006.siftscience.event.domain.Event;
-import com.mcac0006.siftscience.label.domain.Label;
+import com.mcac0006.siftscience.label.domain.CreatedLabel;
 import com.mcac0006.siftscience.result.domain.SiftScienceResponse;
 import com.mcac0006.siftscience.score.domain.SiftScienceScore;
 
@@ -37,6 +37,13 @@ public class SiftScienceHelper {
 	private ObjectMapper mapper;
 	
 	private String apiKey;
+
+	private String encodeUserId(String userId)
+	{
+		userId = userId.replace("+", "%2B");
+		userId = userId.replace("@", "%40");
+		return userId;
+	}
 	
 	public SiftScienceHelper(final String apiKey) {
 		
@@ -82,19 +89,22 @@ public class SiftScienceHelper {
 	 * Sends a Label ($label) to Sift Science.
 	 * 
 	 * @param userId - the user in question
-	 * @param label - the content regarding the user in question.
+	 * @param createdLabel - the content regarding the user in question.
 	 * @return the Sift Science response which denotes whether the request has been processed successfully or not.
 	 */
-	public SiftScienceResponse send(final String userId, final Label label) {
+	public SiftScienceResponse send(final String userId, final CreatedLabel createdLabel) {
 		
-		label.setApiKey(apiKey);
+		createdLabel.setApiKey(apiKey);
 		
+		String encodedUserId = encodeUserId(userId);
+
 		try {
 			
 			final Client client = ClientBuilder.newClient();
-			final WebTarget target = client.target("https://api.siftscience.com/v203/users/").path(userId).path("labels");
+			final WebTarget target = client.target("https://api.siftscience.com/v203/users/" + encodedUserId).path("labels");
+			System.out.println("&&&& " + target.getUri());
 			final Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
-			final Response post = request.post(Entity.entity(mapper.writeValueAsString(label), MediaType.APPLICATION_JSON_TYPE));
+			final Response post = request.post(Entity.entity(mapper.writeValueAsString(createdLabel), MediaType.APPLICATION_JSON_TYPE));
 			
 			final SiftScienceResponse siftResult = mapper.readValue(post.readEntity(String.class), SiftScienceResponse.class);
 			return siftResult;
@@ -120,10 +130,12 @@ public class SiftScienceHelper {
 	 */
 	public SiftScienceScore getScore(final String userId) {
 		
+		String encodedUserId = encodeUserId(userId);
+
 		try {
 			
 			final Client client = ClientBuilder.newClient();
-			final WebTarget target = client.target("https://api.siftscience.com/v203/score/").path(userId).queryParam("api_key", apiKey);
+			final WebTarget target = client.target("https://api.siftscience.com/v203/score/" + encodedUserId).queryParam("api_key", apiKey);
 			final Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
 			final Response get = request.get();
 			

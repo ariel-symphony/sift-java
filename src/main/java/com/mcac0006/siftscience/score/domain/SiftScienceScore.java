@@ -49,7 +49,7 @@ public class SiftScienceScore {
 	 * If this user has been labeled by you or your system, this will contain the last label given by Sift Science.
 	 */
 	@JsonProperty(value="latest_label")
-	private Label latestLabel;
+	private RetrievedLabel latestLabel;
 	
 	/**
 	 * Return a status for the response. Refer to the 
@@ -72,7 +72,7 @@ public class SiftScienceScore {
 		return reasons;
 	}
 
-	public final Label getLatestLabel() {
+	public final RetrievedLabel getLatestLabel() {
 		return latestLabel;
 	}
 
@@ -96,7 +96,7 @@ public class SiftScienceScore {
 		this.reasons = reasons;
 	}
 
-	public final void setLatestLabel(Label latestLabel) {
+	public final void setLatestLabel(RetrievedLabel latestLabel) {
 		this.latestLabel = latestLabel;
 	}
 

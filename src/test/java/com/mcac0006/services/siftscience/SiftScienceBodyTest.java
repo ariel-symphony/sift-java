@@ -23,7 +23,7 @@ import com.mcac0006.siftscience.event.domain.SendMessage;
 import com.mcac0006.siftscience.event.domain.SubmitReview;
 import com.mcac0006.siftscience.event.domain.Transaction;
 import com.mcac0006.siftscience.event.domain.UpdateAccount;
-import com.mcac0006.siftscience.label.domain.Label;
+import com.mcac0006.siftscience.label.domain.CreatedLabel;
 import com.mcac0006.siftscience.types.Address;
 import com.mcac0006.siftscience.types.Item;
 import com.mcac0006.siftscience.types.LoginStatus;
@@ -532,10 +532,10 @@ public class SiftScienceBodyTest {
 	}
 	
 	/**
-	 * 1. Instantiate an {@link Label} instance with the same values found in 
+	 * 1. Instantiate an {@link com.mcac0006.siftscience.label.domain.CreatedLabel} instance with the same values found in
 	 * 	  $label.json.
 	 * 
-	 * 2. Generate an {@link Label} instance from $label.json.
+	 * 2. Generate an {@link com.mcac0006.siftscience.label.domain.CreatedLabel} instance from $label.json.
 	 * ---
 	 * Both instances must be equal.
 	 * 
@@ -547,26 +547,26 @@ public class SiftScienceBodyTest {
 	public void createLabel() throws JsonGenerationException, JsonMappingException, IOException {
 		
 		// 1. Instantiate an {@link Label} instance with the same values found in $label.json.
-		final Label label = new Label();
-		label.setApiKey("INSERT_API_KEY_HERE");
-		label.setIsBad(true).setReasons(new Reason[]{Reason.CHARGEBACK}).setDescription("Freeform text describing the user or incident.");
+		final CreatedLabel createdLabel = new CreatedLabel();
+		createdLabel.setApiKey("INSERT_API_KEY_HERE");
+		createdLabel.setIsBad(true).setReasons(new Reason[]{Reason.CHARGEBACK}).setDescription("Freeform text describing the user or incident.");
 		
 		// 2. Generate an {@link Label} instance from $label.json.
-		final Label $label = mapper.readValue(new FileInputStream("target/test-classes/$label.json"), Label.class);
-		Assert.assertNotNull($label);
+		final CreatedLabel $CreatedLabel = mapper.readValue(new FileInputStream("target/test-classes/$label.json"), CreatedLabel.class);
+		Assert.assertNotNull($CreatedLabel);
 		
 		/*
 		 * ---
 		 * Both instances must be equal.
 		 */
-		Assert.assertEquals("Both instances must be equal", label, $label);
+		Assert.assertEquals("Both instances must be equal", createdLabel, $CreatedLabel);
 	}
 	
 	/**
-	 * 1. Instantiate an {@link Label} instance with the same values found in 
+	 * 1. Instantiate an {@link com.mcac0006.siftscience.label.domain.CreatedLabel} instance with the same values found in
 	 * 	  $historical_label.json.
 	 * 
-	 * 2. Generate an {@link Label} instance from $historical_label.json.
+	 * 2. Generate an {@link com.mcac0006.siftscience.label.domain.CreatedLabel} instance from $historical_label.json.
 	 * ---
 	 * Both instances must be equal.
 	 * 
@@ -578,14 +578,14 @@ public class SiftScienceBodyTest {
 	public void createHistoricalLabel() throws JsonGenerationException, JsonMappingException, IOException {
 		
 		// 1. Instantiate an {@link Label} instance with the same values found in $historical_label.json.
-		final Label label = new Label();
-		label.setApiKey("INSERT_API_KEY_HERE");
-		label.setTime(new Date(112, 10, 8, 0, 0, 0));
-		label.setIsBad(true).setReasons(new Reason[]{Reason.CHARGEBACK}).setDescription("Freeform text describing the user or incident.");
+		final CreatedLabel createdLabel = new CreatedLabel();
+		createdLabel.setApiKey("INSERT_API_KEY_HERE");
+		createdLabel.setTime(new Date(112, 10, 8, 0, 0, 0));
+		createdLabel.setIsBad(true).setReasons(new Reason[]{Reason.CHARGEBACK}).setDescription("Freeform text describing the user or incident.");
 		
 		// 2. Generate an {@link Label} instance from $historical_label.json.
-		final Label $label = mapper.readValue(new FileInputStream("target/test-classes/$historical_label.json"), Label.class);
-		Assert.assertNotNull($label);
+		final CreatedLabel $CreatedLabel = mapper.readValue(new FileInputStream("target/test-classes/$historical_label.json"), CreatedLabel.class);
+		Assert.assertNotNull($CreatedLabel);
 		
 		/*
 		 * ---
